@@ -37,3 +37,6 @@ def build_model(num_classes, input_shape):
     model.compile(loss=loss_function, optimizer=optimizer, metrics=['accuracy'])
 
     return model
+
+#Test loss: 0.11027183223194886
+#Test accuracy: 0.9655985832214355
