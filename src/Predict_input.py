@@ -1,21 +1,25 @@
-import src.preprocessing_input_sketch.py as pi
-from keras.models import load_model
 import numpy as np
 from PIL import Image
 
-#Load model:
-#Maybe I have to move this to the main.py...
-model = load_model('./OUTPUT/model_scketch_extended.h5') 
 
-def predict_class(model=model):
+def process_input(path):
+    im = Image.open(path)
+    im = im.resize((28,28),Image.ANTIALIAS)
+    im = np.asarray(im.convert('L'))
+    im = np.array([255-i for i in im])
+    #plt.imshow(im, cmap='gray')
+    return im.reshape(1,28, 28,1)
+
+
+def predict_class(model, path):
     #Load and preprocess input
-    im = pi.process_input('./INPUT/image.jpg')
+    im = process_input(path)
 
     #predict the class
     pred = model.predict(im)
 
     #format prediction
-    classes = ['ejeglasses', 'eyes', 'hat', 'mouth', 'nose']
-    ind = np.where(pred==max(pred))[0][0]
+    classes = ['eyeglasses', 'eyes', 'hat', 'mouth', 'nose']
+    ind = np.where(pred[0]==max(pred[0]))[0][0]
 
     return classes[ind]
