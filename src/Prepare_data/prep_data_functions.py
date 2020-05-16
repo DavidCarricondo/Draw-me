@@ -2,7 +2,7 @@ import numpy as np
 from sklearn import preprocessing
 
 def create_x(dic):
-    X = np.concatenate([[e for e in k] for k in dict])
+    X = np.concatenate([[e for e in dic[k]] for k in dic])
     return np.array([e.reshape((28,28)) for e in X])
     
     

@@ -8,6 +8,7 @@ import sys
 def delete(cv, e):
     cv.delete(ALL)
     e.delete(0,END)
+    
 
 def save_predict(imag,e, model):
     filename = "./OUTPUT/image.jpg"

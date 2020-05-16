@@ -2,6 +2,7 @@ from tkinter import *
 from PIL import Image, ImageDraw
 import PIL
 from src.gui_functions import *
+from src.recognition import *
 from tkinter import messagebox as mb
 from keras.models import load_model
 
@@ -9,7 +10,7 @@ def main():
 
     #Load model:
     #Maybe I have to move this to the main.py...
-    model = load_model('./OUTPUT/model_sketch_extended.h5') 
+    model = load_model('./OUTPUT/model_sketch.h5') #_extended
 
 
     root = Tk()
@@ -48,7 +49,7 @@ def main():
     button2 = Button(root, text = 'Reset', padx=25, pady=15, command=lambda: delete(cv, e))
     button2.grid(row=2, column=2)
 
-    button3 = Button(root, text = 'Exit', padx=25, pady=15, command=exit)
+    button3 = Button(root, text = 'Exit', padx=25, pady=15, command=cam)
     button3.grid(row=3, column=4 )
 
     root.mainloop()
