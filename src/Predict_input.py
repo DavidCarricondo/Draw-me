@@ -19,7 +19,8 @@ def predict_class(model, path):
     pred = model.predict(im)
 
     #format prediction
-    classes = ['eyes', 'mouth', 'nose']#['eyeglasses', 'eyes', 'hat', 'mouth', 'nose']
+    #classes = ['eyes', 'mouth', 'nose']
+    classes = ['eyeglasses', 'eyes', 'hat', 'mouth', 'nose']
     ind = np.where(pred[0]==max(pred[0]))[0][0]
 
     return classes[ind]

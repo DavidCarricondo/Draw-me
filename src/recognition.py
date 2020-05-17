@@ -1,11 +1,10 @@
 import cv2
-import numpy as NotImplemented
+import numpy as np
 
 def cam():
     face_cascade = cv2.CascadeClassifier('./src/models/haarcascade_frontalface_default.xml')
     eye_cascade = cv2.CascadeClassifier('./src/models/haarcascade_eye.xml')
-    smile_cascade = cv2.CascadeClassifier('./src/models/haarcascade_smile.xml')
-
+    smile_cascade = cv2.CascadeClassifier('./src/models/haarcascade_mcs_nose.xml')
 
     cap = cv2.VideoCapture(0)
 
@@ -27,7 +26,7 @@ def cam():
                 cv2.rectangle(roi_color, (sx, sy), (sx+sw, sy+sh), (0, 0, 255), 2)
 
         cv2.imshow('img', img)
-        k = cv2.waitKey(0) & 0xff
+        k = cv2.waitKey(1) & 0xff
         if k == ord('q'):
             break
 

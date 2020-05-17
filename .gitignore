@@ -3,4 +3,5 @@
 .vscode
 *.npy
 __pycache__
+src/__pycache__
 

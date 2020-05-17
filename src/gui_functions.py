@@ -6,10 +6,9 @@ import sys
 
 ##Button:
 def delete(cv, e):
-    cv.delete(ALL)
     e.delete(0,END)
+    cv.delete(ALL)
     
-
 def save_predict(imag,e, model):
     filename = "./OUTPUT/image.jpg"
     imag.save(filename)
@@ -23,6 +22,3 @@ def paint(event, cv, draw):
     x2, y2 = (event.x + 1), (event.y + 1)
     cv.create_oval(x1, y1, x2, y2, fill="black",width=8)
     draw.line([x1, y1, x2, y2],fill="black",width=8)
-
-def exit():
-    sys.exit()
