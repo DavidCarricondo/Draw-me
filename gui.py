@@ -12,13 +12,12 @@ def main():
     #Maybe I have to move this to the main.py...
     model = load_model('./OUTPUT/model_sketch_extended_v2.h5') #_extended
 
-
     root = Tk()
     root.title('Draw on me!!')
     #root.bind("<Escape>", root.quit)
 
     e = Entry(root, width=35, borderwidth=5, text='Your prediction')
-    e.grid(row=2, column=1)
+    e.grid(row=4, column=1)
 
     # Create an empty PIL image to draw on it.
     image1 = PIL.Image.new("RGB", (350, 350), (255,255,255))
@@ -34,7 +33,7 @@ def main():
 
     #Create canvas paint:
     cv = Canvas(root, width=350, height=350, bg='white')
-    cv.grid(row=1, column=0, columnspan=3)
+    cv.grid(row=1, column=0, columnspan=3, rowspan=3)
     cv.bind("<B1-Motion>", lambda x: paint(event=x, cv=cv, draw=draw))
 
     
@@ -47,16 +46,19 @@ def main():
 
     #Buttons    
     button = Button(root, text = 'Ready!!', padx=25, pady=15, command=lambda: save_predict(image1, e, model))
-    button.grid(row=2, column=0)
+    button.grid(row=4, column=0)
 
     button2 = Button(root, text = 'Reset', padx=25, pady=15, command=lambda: delete(cv, e))
-    button2.grid(row=2, column=2)
+    button2.grid(row=4, column=2)
 
     button3 = Button(root, text = 'Exit', padx=25, pady=15, command=root.quit)
-    button3.grid(row=3, column=4 )
+    button3.grid(row=5, column=1 )
 
-    button4 = Button(root, text = 'Cam', padx=25, pady=15, command=lambda:cam(substitute=False))
-    button4.grid(row=3, column=5 )
+    button4 = Button(root, text = 'Features cam', padx=25, pady=15, command=lambda:cam(substitute=False))
+    button4.grid(row=2, column=3 )
+
+    button5 = Button(root, text = 'Drawing cam', padx=25, pady=15, command=lambda:cam(substitute=True))
+    button5.grid(row=3, column=3 )
 
     root.mainloop()
 
