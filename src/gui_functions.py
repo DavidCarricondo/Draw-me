@@ -17,10 +17,11 @@ def delete(cv, e, draw):
 def save_predict(imag,e, model):
     """Use the model to predict the drawing and saves the image"""
     imag.save("./OUTPUT/pred.jpg")
-    prediction = predict_class(model, "./OUTPUT/pred.jpg")
-    e.insert(0, prediction)
+    obj, prediction = predict_class(model, "./OUTPUT/pred.jpg")
+    text = obj.upper() + ' Accuracy:' + str(round(prediction, 2) * 100) + '%'
+    e.insert(0, text)
     name = e.get()
-    filename = f"./OUTPUT/{name}.jpg"
+    filename = f"./OUTPUT/{obj}.jpg"
     #filename = "./OUTPUT/image.jpg"
     imag.save(filename)
     mb.showinfo("Info", "You're image have been saved")

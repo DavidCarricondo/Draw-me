@@ -11,9 +11,9 @@ def cam(substitute = True):
     cap = cv2.VideoCapture(0)
 
     #Pictures to add to the video
-    img_face = open_img('face')
-    img_eye = open_img('eye')
-    img_nose = open_img('nose')
+    img_face = open_img('face', test=False)
+    img_eye = open_img('eyes', test=False)
+    img_nose = open_img('nose', test=False)
         
     while True:
         ret, img = cap.read()
@@ -67,9 +67,9 @@ def cam(substitute = True):
             for (sx, sy, sw, sh) in nose:
                 if substitute == True:
                     if len(img_nose)!=0:
-                        img_nose = image_resize(img_nose, width=sw, height=sh)
-                        nose_h, nose_w, nose_c = img_nose.shape
-                        roi_color[sy:sy+nose_h, sx:sx+nose_w] = img_nose
+                        nose = image_resize(img_nose, width=sw, height=sh)
+                        nose_h, nose_w, nose_c = nose.shape
+                        roi_color[sy:sy+nose_h, sx:sx+nose_w] = nose
                 else:
                     cv2.rectangle(roi_color, (sx, sy), (sx+sw, sy+sh), (0, 0, 255), 2)
 

@@ -23,4 +23,4 @@ def predict_class(model, path):
     classes = ['eyeglasses', 'eyes', 'hat', 'mouth', 'nose']
     ind = np.where(pred[0]==max(pred[0]))[0][0]
 
-    return classes[ind]
+    return classes[ind], max(pred[0])
