@@ -2,7 +2,7 @@ from tkinter import *
 from PIL import Image, ImageDraw
 import PIL
 from src.gui_functions import *
-from src.recognition_copy import *
+from src.recognition import *
 from tkinter import messagebox as mb
 from keras.models import load_model
 
@@ -10,7 +10,7 @@ def main():
 
     #Load model:
     #Maybe I have to move this to the main.py...
-    model = load_model('./OUTPUT/model_sketch_extended_v2.h5') #_extended
+    model = load_model('./src/models/model_sketch_extended_v3.h5') #_extended
 
     root = Tk()
     root.title('Draw on me!!')
@@ -51,7 +51,7 @@ def main():
     button2 = Button(root, text = 'Reset', padx=25, pady=15, command=lambda: delete(cv, e, draw))
     button2.grid(row=4, column=2)
 
-    button3 = Button(root, text = 'Exit', padx=25, pady=15, command=root.quit)
+    button3 = Button(root, text = 'Exit', padx=25, pady=15, command=lambda: exit(root))
     button3.grid(row=5, column=1 )
 
     button4 = Button(root, text = 'Features cam', padx=25, pady=15, command=lambda:cam(substitute=False))
