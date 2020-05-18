@@ -3,6 +3,8 @@ from tkinter import messagebox as mb
 from PIL import ImageDraw, Image
 from src.Predict_input import predict_class
 import os
+import cv2
+import numpy as np
 #import sys
 
 ##Button:
@@ -21,6 +23,16 @@ def save_predict(imag,e, model):
     text = obj.upper() + ' Accuracy:' + str(round(prediction, 2) * 100) + '%'
     e.insert(0, text)
     name = e.get()
+
+    """
+    Trying transparency:
+    ig = cv2.imread('./OUTPUT/pred.jpg')
+    iga = cv2.cvtColor(ig, cv2.COLOR_BGR2BGRA)
+    white = np.all(ig == [255, 255, 255], axis=-1)
+    iga[white, -1] = 0
+    cv2.imwrite('./OUTPUT/test.jpg', iga)
+    """
+
     filename = f"./OUTPUT/{obj}.jpg"
     #filename = "./OUTPUT/image.jpg"
     imag.save(filename)
