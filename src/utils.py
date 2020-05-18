@@ -13,11 +13,12 @@ def errorHandler(fn):
     return wrapper
 
 @errorHandler
-def open_img (name, ):
+def open_img (name, test=True):
     """
     Open an image from OUTPUT and convert it for handling
     """
-    path = f'./OUTPUT/{name}_test.jpg'
+    test = '_test' if test==True else ''
+    path = f'./OUTPUT/{name}{test}.jpg'
     img = cv2.imread(path, -1)
     return cv2.cvtColor(img, cv2.COLOR_BGR2BGRA)
 

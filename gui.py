@@ -48,7 +48,7 @@ def main():
     button = Button(root, text = 'Ready!!', padx=25, pady=15, command=lambda: save_predict(image1, e, model))
     button.grid(row=4, column=0)
 
-    button2 = Button(root, text = 'Reset', padx=25, pady=15, command=lambda: delete(cv, e))
+    button2 = Button(root, text = 'Reset', padx=25, pady=15, command=lambda: delete(cv, e, draw))
     button2.grid(row=4, column=2)
 
     button3 = Button(root, text = 'Exit', padx=25, pady=15, command=root.quit)
