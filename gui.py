@@ -25,11 +25,13 @@ def main():
     draw = ImageDraw.Draw(image1)
 
     ##Labels for location
-    myLabel1 = Label(root, text = '')
+    myLabel1 = Label(root, text = 'Paint here your feature!!')
     myLabel2 = Label(root, text = '')
 
-    myLabel1.grid(row=0, column=0)
+    myLabel1.grid(row=0, column=1)
     myLabel2.grid(row=0, column=5)
+
+    var = IntVar()
 
     #Create canvas paint:
     cv = Canvas(root, width=350, height=350, bg='white')
@@ -55,10 +57,13 @@ def main():
     button3.grid(row=5, column=1 )
 
     button4 = Button(root, text = 'Features cam', padx=25, pady=15, command=lambda:cam(substitute=False))
-    button4.grid(row=2, column=3 )
+    button4.grid(row=1, column=3 )
 
-    button5 = Button(root, text = 'Drawing cam', padx=25, pady=15, command=lambda:cam(substitute=True))
-    button5.grid(row=3, column=3 )
+    button5 = Button(root, text = 'Drawing cam', padx=25, pady=15, command=lambda:cam(substitute=True, transparency=var.get()))
+    button5.grid(row=2, column=3 )
+
+    check = Checkbutton(root, text='Transparent features', variable=var)
+    check.grid(row=3, column=3)
 
     root.mainloop()
 

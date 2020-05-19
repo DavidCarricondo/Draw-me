@@ -1,9 +1,10 @@
 import cv2
 import numpy as np
-
 from src.utils import *
 
-def cam(substitute = True):
+##NOTE FOR MY FUTURE ME: IN CV2 THE Y AXIS GOES INCREASINGLY FROM THE TOP --> DOWN.
+
+def cam(substitute = True, transparency = 0):
     face_cascade = cv2.CascadeClassifier('./src/models/haarcascade_frontalface_default.xml')
     eye_cascade = cv2.CascadeClassifier('./src/models/haarcascade_eye.xml')
     nose_cascade = cv2.CascadeClassifier('./src/models/haarcascade_mcs_nose.xml')
@@ -22,25 +23,6 @@ def cam(substitute = True):
       
         img_h, img_w, img_c = img.shape
 
-        #Create overlay with B,G,R and alpha channels:
-        #overlay = np.zeros((img_h, img_w, 4), dtype = 'uint8')
-        #overlay[100:250, 100:125] = (255, 255,0, 1)
-        #overlay[100:250, 150:255] = (0, 255, 0, 1)
-        #cv2.imshow('overlay', overlay)
-
-        
-        #for i in range(0, pict_h):
-        #    for j in range(0, pict_w):
-        #        overlay[i+150, j+100] = pict_resize[i, j]
-
-        #WIthout alpha
-        #x_start= 50
-        #y_start= 150
-        #img[y_start:y_start+pict_h, x_start:x_start+pict_w] = pict_resize
-        
-        #cv2.addWeighted(overlay, 0.75, img, 1.0, 0, img)
-        #cv2.imshow('gray', img)
-
         faces = face_cascade.detectMultiScale(gray, scaleFactor = 1.3, minNeighbors = 5)
         for  (x,y,w,h) in faces:
             #font = cv2.FONT_HERSHEY_COMPLEX
@@ -57,24 +39,29 @@ def cam(substitute = True):
                     hat = image_resize(img_hat, width=w)
                     hat_h, hat_w, hat_c = hat.shape
                     if y-hat_h > 0:
-                        #print(hat.shape)
-                        img[y-hat_h:y, x:x+w] = hat
+                        if transparency==1:
+                            for i in range(y-hat_h, y):
+                                for e in range(x,x+w):
+                                    if hat[i-y, e-x, 3] != 0:
+                                        img[i,e] = hat[i-y, e-x]
+                        else:                    
+                            img[y-hat_h:y, x:x+w] = hat
             else:
                 cv2.rectangle(img, (x,y), (x+w, y+h), (255, 0, 0), 2)
-                #print(img_h-y)
+            
             #Within eyes rectangle:
             for (ex, ey, ew, eh) in eyes:
                 if substitute==True:
                     if len(img_eye)!=0:
                         eye = image_resize(img_eye, width=ew, height=eh)
                         eye_h, eye_w, eye_c = eye.shape
-
-                        for i in range(ey, ey+eye_h):
-                            for e in range(ex,ex+eye_w):
-                                if eye[i-ey, e-ex, 3] != 0:
-                                    roi_color[i,e] = eye[i-ey, e-ex]
-
-                        #roi_color[ey:ey+eye_h, ex:ex+eye_w] = eye
+                        if transparency==1:
+                            for i in range(ey, ey+eye_h):
+                                for e in range(ex,ex+eye_w):
+                                    if eye[i-ey, e-ex, 3] != 0:
+                                        roi_color[i,e] = eye[i-ey, e-ex]
+                        else:
+                            roi_color[ey:ey+eye_h, ex:ex+eye_w] = eye
                 else:
                     cv2.rectangle(roi_color, (ex, ey), (ex+ew, ey+eh), (0, 255, 0), 2)
             
@@ -84,13 +71,13 @@ def cam(substitute = True):
                     if len(img_nose)!=0:
                         nose = image_resize(img_nose, width=sw, height=sh)
                         nose_h, nose_w, nose_c = nose.shape
-
-                        for i in range(sy, sy+nose_h):
-                            for e in range(sx,sx+nose_w):
-                                if nose[i-sy, e-sx, 3] != 0:
-                                    roi_color[i,e] = nose[i-sy, e-sx]
-                        
-                        #roi_color[sy:sy+nose_h, sx:sx+nose_w] = nose
+                        if transparency==1:
+                            for i in range(sy, sy+nose_h):
+                                for e in range(sx,sx+nose_w):
+                                    if nose[i-sy, e-sx, 3] != 0:
+                                        roi_color[i,e] = nose[i-sy, e-sx]
+                        else:    
+                            roi_color[sy:sy+nose_h, sx:sx+nose_w] = nose
                         
                 else:
                     cv2.rectangle(roi_color, (sx, sy), (sx+sw, sy+sh), (0, 0, 255), 2)
