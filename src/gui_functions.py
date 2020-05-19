@@ -18,8 +18,8 @@ def delete(cv, e, draw):
     
 def save_predict(imag,e, model):
     """Use the model to predict the drawing and saves the image"""
-    imag.save("./OUTPUT/pred.jpg")
-    obj, prediction = predict_class(model, "./OUTPUT/pred.jpg")
+    imag.save("./OUTPUT/pred.png")
+    obj, prediction = predict_class(model, "./OUTPUT/pred.png")
     text = obj.upper() + ' Accuracy:' + str(round(prediction, 2) * 100) + '%'
     e.insert(0, text)
     name = e.get()
@@ -32,10 +32,10 @@ def save_predict(imag,e, model):
     iga[white, -1] = 0
     cv2.imwrite('./OUTPUT/test.jpg', iga)
     """
-
-    filename = f"./OUTPUT/{obj}.jpg"
+    transparent("./OUTPUT/pred.png", obj)
+    #filename = f"./OUTPUT/{obj}.jpg"
     #filename = "./OUTPUT/image.jpg"
-    imag.save(filename)
+    #imag.save(filename)
     mb.showinfo("Info", "You're image have been saved")
     
 
@@ -50,7 +50,20 @@ def paint(event, cv, draw):
 def exit(root):
     classes = ['eyeglasses', 'eyes', 'hat', 'mouth', 'nose', 'pred']
     for e in classes:
-        if os.path.exists(f"./OUTPUT/{e}.jpg"):
-            os.remove(f"./OUTPUT/{e}.jpg")
+        if os.path.exists(f"./OUTPUT/{e}.png"):
+            os.remove(f"./OUTPUT/{e}.png")
     root.quit()
 
+def transparent(path, obj):
+    im = Image.open(path)
+    img = im.convert("RGBA")
+    pixels = img.getdata()
+    newdata = []
+    for item in pixels:
+        if item[0]==255 and item[1]==255 and item[2]==255:
+            newdata.append((255, 255, 255, 0))
+        else:
+            newdata.append(item)
+    img.putdata(newdata)
+    filename = f"./OUTPUT/{obj}.png"
+    img.save(filename) 

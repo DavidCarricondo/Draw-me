@@ -18,7 +18,7 @@ def open_img (name, test=True):
     Open an image from OUTPUT and convert it for handling
     """
     test = '_test' if test==True else ''
-    path = f'./OUTPUT/{name}{test}.jpg'
+    path = f'./OUTPUT/{name}{test}.png'
     img = cv2.imread(path, -1)
     return cv2.cvtColor(img, cv2.COLOR_BGR2BGRA)
 
