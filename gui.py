@@ -36,7 +36,7 @@ def main():
     draw = ImageDraw.Draw(image1)
 
     ##Labels for location
-    myLabel1 = Label(root, text = 'Paint here your feature!!', bd=5,bg="#898989")
+    myLabel1 = Label(root, text = 'Draw here your feature!!', bd=5,bg="#898989", font='Helvetica 16 bold')
     myLabel2 = Label(root, text = '')
 
     myLabel1.grid(row=0, column=1)
@@ -50,22 +50,22 @@ def main():
     cv.bind("<B1-Motion>", lambda x: paint(event=x, cv=cv, draw=draw))
    
     #Buttons    
-    button = Button(root, text = 'Ready!!', padx=25, pady=15, bd=5,bg="#898989", command=lambda: save_predict(image1, e, model))
+    button = Button(root, text = 'Ready!!', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda: save_predict(image1, e, model))
     button.grid(row=4, column=0)
 
-    button2 = Button(root, text = 'Reset', padx=25, pady=15, bd=5,bg="#898989", command=lambda: delete(cv, e, draw))
+    button2 = Button(root, text = 'Reset', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda: delete(cv, e, draw))
     button2.grid(row=4, column=2)
 
-    button3 = Button(root, text = 'Exit', padx=25, pady=15, bd=5,bg="#898989", command=lambda: exit(root))
+    button3 = Button(root, text = 'Exit', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda: exit(root))
     button3.grid(row=5, column=1 )
 
-    button4 = Button(root, text = 'Features cam', padx=25, pady=15, bd=5,bg="#898989", command=lambda:cam(substitute=False))
+    button4 = Button(root, text = 'Features cam', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda:cam(substitute=False))
     button4.grid(row=1, column=3 )
 
-    button5 = Button(root, text = 'Drawing cam', padx=25, pady=15, bd=5,bg="#898989", command=lambda:cam(substitute=True, transparency=var.get()))
+    button5 = Button(root, text = 'Drawing cam', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda:cam(substitute=True, transparency=var.get()))
     button5.grid(row=2, column=3 )
 
-    check = Checkbutton(root, text='Transparent features', bd=5, bg="#898989", variable=var)
+    check = Checkbutton(root, text='Transparent features', font='Helvetica 9 bold', bd=5, bg="#898989", variable=var)
     check.grid(row=3, column=3)
 
     root.mainloop()
