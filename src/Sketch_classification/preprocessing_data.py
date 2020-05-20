@@ -31,5 +31,5 @@ X = pf.create_x(sketch_data)
 y = y = pf.create_y(sketch_data)
 
 
-#np.save('../../OUTPUT/X_clean.npy', X)
-#np.save('../../OUTPUT/y.npy', y)
+#np.save('../../OUTPUT/X_trimm.npy', X)
+#np.save('../../OUTPUT/y_trimm.npy', y)

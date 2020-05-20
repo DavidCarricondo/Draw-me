@@ -5,6 +5,10 @@ from src.utils import *
 ##NOTE FOR MY FUTURE ME: IN CV2 THE Y AXIS GOES INCREASINGLY FROM THE TOP --> DOWN.
 
 def cam(substitute = True, transparency = 0):
+    """
+    Recognize and substitute a haar feature by a corresponding drawing
+    and tracks and redraw the object with the cam movement
+    """
     face_cascade = cv2.CascadeClassifier('./src/models/haarcascade_frontalface_default.xml')
     eye_cascade = cv2.CascadeClassifier('./src/models/haarcascade_eye.xml')
     nose_cascade = cv2.CascadeClassifier('./src/models/haarcascade_mcs_nose.xml')

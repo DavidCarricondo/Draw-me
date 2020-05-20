@@ -48,7 +48,6 @@ def image_resize(image, width = None, height = None, inter = cv2.INTER_CUBIC):
 def obj_swapping(image, frame, x, y, h, w, transparency, top=False):
     """
     Substitute a haar feature by a corresponding drawing
-    and tracks and redraw the object with the cam movement
     """
     #If the image exist:
     if len(image)!=0:

@@ -15,19 +15,15 @@ def main():
     root = Tk()
     root.geometry('700x520')
     root.title('Draw on me!!')
-    #root.bind("<Escape>", root.quit)
+    #Shut down on escape
+    root.bind('<Escape>', lambda e: root.quit())
 
     #Bckground picture canvas:
     cv_back = Canvas(root)
     img = ImageTk.PhotoImage(Image.open("./INPUT/background.gif"))
     cv_back.create_image(0,0, anchor=NW, image=img)
     cv_back.place(x=0, y=0, relwidth=1.5, relheight=1)#grid(row=0, column=0, columnspan=3, rowspan=5)
-    """
-    background_image=PhotoImage('./OUTPUT/background.jpg')
-    background_label = Label(root, image=background_image)
-    background_label.image = background_image
-    background_label.place(x=0, y=0, relwidth=1, relheight=1)
-    """
+
     e = Entry(root, width=45, borderwidth=5)
     e.insert(0, 'Your prediction will appear here')
     e.grid(row=4, column=1)
