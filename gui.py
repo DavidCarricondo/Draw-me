@@ -55,7 +55,7 @@ def main():
     button = Button(root, text = 'Ready!!', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda: save_predict(image1, e, model))
     button.grid(row=4, column=0)
 
-    button2 = Button(root, text = 'Reset', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda: delete(cv, e, draw))
+    button2 = Button(root, text = 'Clear', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda: delete(cv, e, draw))
     button2.grid(row=4, column=2)
 
     button3 = Button(root, text = 'Exit', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda: exit(root))

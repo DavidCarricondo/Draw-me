@@ -48,7 +48,7 @@ def paint(event, cv, draw):
     cv.create_oval(x1, y1, x2, y2, fill="black",width=12)
     draw.line([x1, y1, x2, y2],fill="black",width=12)
 
-def exit(root):
+def exit(root, exit = True):
     classes = ['eyeglasses', 'eyes', 'hat', 'mouth', 'nose', 'pred']
     for e in classes:
         if os.path.exists(f"./OUTPUT/{e}.png"):
