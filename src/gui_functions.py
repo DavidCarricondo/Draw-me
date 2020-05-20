@@ -45,15 +45,18 @@ def paint(event, cv, draw):
     # python_green = "#476042"
     x1, y1 = (event.x - 1), (event.y - 1)
     x2, y2 = (event.x + 1), (event.y + 1)
-    cv.create_oval(x1, y1, x2, y2, fill="black",width=12)
-    draw.line([x1, y1, x2, y2],fill="black",width=12)
+    cv.create_oval(x1, y1, x2, y2, fill="black",width=14)
+    draw.line([x1, y1, x2, y2],fill="black",width=14)
 
-def exit(root, exit = True):
+def exit(root, reset = False):
     classes = ['eyeglasses', 'eyes', 'hat', 'mouth', 'nose', 'pred']
     for e in classes:
         if os.path.exists(f"./OUTPUT/{e}.png"):
             os.remove(f"./OUTPUT/{e}.png")
-    root.quit()
+    if reset == True:
+        mb.showinfo("Info", "You're images have been reseted")
+    else:
+        root.quit()
 
 def transparent(path, obj):
     im = Image.open(path)

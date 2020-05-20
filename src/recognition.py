@@ -12,6 +12,7 @@ def cam(substitute = True, transparency = 0):
     face_cascade = cv2.CascadeClassifier('./src/models/haarcascade_frontalface_default.xml')
     eye_cascade = cv2.CascadeClassifier('./src/models/haarcascade_eye.xml')
     nose_cascade = cv2.CascadeClassifier('./src/models/haarcascade_mcs_nose.xml')
+    mouth_cascade = cv2.CascadeClassifier('./src/models/haarcascade_mcs_mouth.xml')
 
     cap = cv2.VideoCapture(0)
 
@@ -19,6 +20,7 @@ def cam(substitute = True, transparency = 0):
     img_eye = open_img('eyes', test=False)
     img_nose = open_img('nose', test=False)
     img_hat = open_img('hat', test=False)
+    img_mouth = open_img('mouth', test=False)
         
     while True:
         ret, img = cap.read()
@@ -35,8 +37,10 @@ def cam(substitute = True, transparency = 0):
             
             roi_gray = gray[y:y+h, x:x+w]
             roi_color = img[y:y+h, x:x+w]
-            eyes = eye_cascade.detectMultiScale(roi_gray, scaleFactor = 1.03, minNeighbors = 5)
-            nose = nose_cascade.detectMultiScale(roi_gray, scaleFactor = 2, minNeighbors = 7)
+            eyes = eye_cascade.detectMultiScale(roi_gray, scaleFactor = 1.03, minNeighbors = 7)
+            nose = nose_cascade.detectMultiScale(roi_gray, scaleFactor = 1.5, minNeighbors = 7)
+            mouth = mouth_cascade.detectMultiScale(roi_gray, scaleFactor = 2, minNeighbors = 7)
+
             
             ###Hats:
             if substitute==True:
@@ -52,9 +56,15 @@ def cam(substitute = True, transparency = 0):
             #Within nose rectangle:   
             for (sx, sy, sw, sh) in nose:
                 if substitute == True:
-                    obj_swapping(image = img_eye, frame=roi_color, x=ex, y=ey, h=eh, w=ew, transparency=transparency)
+                    obj_swapping(image = img_nose, frame=roi_color, x=sx, y=sy, h=sh, w=sw, transparency=transparency)
                 else:
                     cv2.rectangle(roi_color, (sx, sy), (sx+sw, sy+sh), (0, 0, 255), 2)
+            #Within mouth rectangle:   
+            for (mx, my, mw, mh) in mouth:
+                if substitute == True:
+                    obj_swapping(image = img_mouth, frame=roi_color, x=mx, y=my, h=mh, w=mw, transparency=transparency)
+                else:
+                    cv2.rectangle(roi_color, (mx, my), (mx+mw, my+mh), (255, 0, 255), 2)
 
         cv2.imshow('img', img)
         #cv2.imshow('pict_resized', pict_resized)

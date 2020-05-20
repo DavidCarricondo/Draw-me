@@ -10,13 +10,13 @@ def main():
 
     #Load model:
     #Maybe I have to move this to the main.py...
-    model = load_model('./src/models/model_sketch_extended_v3.h5') #_extended
+    model = load_model('./src/models/model_sketch_extended_v4.h5') #_extended
 
     root = Tk()
     root.geometry('700x520')
     root.title('Draw on me!!')
     #Shut down on escape
-    root.bind('<Escape>', lambda e: root.quit())
+    root.bind('<Escape>', lambda e: exit(root))
 
     #Bckground picture canvas:
     cv_back = Canvas(root)
@@ -54,15 +54,17 @@ def main():
     button2 = Button(root, text = 'Clear', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda: delete(cv, e, draw))
     button2.grid(row=4, column=2)
 
-    button3 = Button(root, text = 'Exit', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda: exit(root))
-    button3.grid(row=5, column=1 )
+    button3 = Button(root, text = 'Exit', font='Helvetica 12 bold', padx=15, pady=5, bd=5,bg="#ff0000", command=lambda: exit(root))
+    button3.place(x=630, y=480)
 
     button4 = Button(root, text = 'Features cam', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda:cam(substitute=False))
     button4.place(x=525, y=100)
-    #button4.grid(row=1, column=3)
 
     button5 = Button(root, text = 'Drawing cam', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda:cam(substitute=True, transparency=var.get()))
     button5.place(x=525, y=200)
+
+    button6 = Button(root, text = 'Reset', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda:exit(root, reset=True))
+    button6.grid(row=5, column=1)
 
     check = Checkbutton(root, text='Transparent features', font='Helvetica 9 bold', bd=5, bg="#898989", variable=var)
     check.place(x=525, y=300)
