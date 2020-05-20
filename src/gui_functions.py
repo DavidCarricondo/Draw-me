@@ -20,7 +20,8 @@ def save_predict(imag,e, model):
     """Use the model to predict the drawing and saves the image"""
     imag.save("./OUTPUT/pred.png")
     obj, prediction = predict_class(model, "./OUTPUT/pred.png")
-    text = obj.upper() + ' Accuracy:' + str(round(prediction, 2) * 100) + '%'
+    text = obj.upper() + ' Accuracy:' + str(round(prediction* 100, 2) ) + '%'
+    e.delete(0,END)
     e.insert(0, text)
     name = e.get()
 

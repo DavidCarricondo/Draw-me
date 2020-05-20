@@ -13,21 +13,23 @@ def main():
     model = load_model('./src/models/model_sketch_extended_v3.h5') #_extended
 
     root = Tk()
+    root.geometry('700x520')
     root.title('Draw on me!!')
     #root.bind("<Escape>", root.quit)
 
-    #Picture canvas:
-    cv2 = Canvas(root)
+    #Bckground picture canvas:
+    cv_back = Canvas(root)
     img = ImageTk.PhotoImage(Image.open("./INPUT/background.gif"))
-    cv2.create_image(0,0, anchor=NW, image=img)
-    cv2.place(x=0, y=0, relwidth=1, relheight=1)#grid(row=0, column=0, columnspan=3, rowspan=5)
+    cv_back.create_image(0,0, anchor=NW, image=img)
+    cv_back.place(x=0, y=0, relwidth=1.5, relheight=1)#grid(row=0, column=0, columnspan=3, rowspan=5)
     """
     background_image=PhotoImage('./OUTPUT/background.jpg')
     background_label = Label(root, image=background_image)
     background_label.image = background_image
     background_label.place(x=0, y=0, relwidth=1, relheight=1)
     """
-    e = Entry(root, width=35, borderwidth=5, text='Your prediction')
+    e = Entry(root, width=45, borderwidth=5)
+    e.insert(0, 'Your prediction will appear here')
     e.grid(row=4, column=1)
 
     # Create an empty PIL image to draw on it.
@@ -60,13 +62,14 @@ def main():
     button3.grid(row=5, column=1 )
 
     button4 = Button(root, text = 'Features cam', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda:cam(substitute=False))
-    button4.grid(row=1, column=3 )
+    button4.place(x=525, y=100)
+    #button4.grid(row=1, column=3)
 
     button5 = Button(root, text = 'Drawing cam', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda:cam(substitute=True, transparency=var.get()))
-    button5.grid(row=2, column=3 )
+    button5.place(x=525, y=200)
 
     check = Checkbutton(root, text='Transparent features', font='Helvetica 9 bold', bd=5, bg="#898989", variable=var)
-    check.grid(row=3, column=3)
+    check.place(x=525, y=300)
 
     root.mainloop()
 
