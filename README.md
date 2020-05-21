@@ -9,9 +9,11 @@ Draw me! is several things at the same time. It is a quick drawing classifier. I
 
 The app provides a drawing canvas where the user can use the mouse to quick sketch a feature (eye, nose, mouth, eyeglasses or hat). The user can then save the image that will be fed to a trained neural network that will guess the feature.
 
-Then, the user can launch the webcam through the app (feature swapping button). This will trigger some haar cascade classifiers that will recognice the features from the video and substitute them with the drawn features.
+Then, the user can launch the webcam through the app by clicking the 'Drawing cam button'. This will trigger some haar cascade classifiers that will recognice the features from the video and substitute them with the drawn features.
 
-Quick start guide:
+Additionally, the user can see the features recognized by the haar cascades classifiers by clicking the 'Features cam' buttom. By ticking the 'Transparent features' box, the white background of the drawing will be removed in the video.
+
+**Quick start guide:**
   <p align='center'>
       <img src='./INPUT/App_guide.jpg' alt="Draw me!" width="600" height="400"> </p>
 
@@ -26,6 +28,6 @@ Quick start guide:
 +   Tkinter==8.6
 
 ### **Click the image for a demo video:**
-
-<a href="https://www.youtube.com/watch?v=VjCKxSiYEgo" target="_blank"><img src='./INPUT/Video_snapshot.png' width="800" height="300" title="Draw me! VIDEO DEMO" alt="Draw me!"></a>
+<p align='center'>
+<a href="https://www.youtube.com/watch?v=VjCKxSiYEgo" target="_blank"><img src='./INPUT/Video_snapshot.png' width="600" height="400" title="Draw me! VIDEO DEMO" alt="Draw me!"></a></p>
 
