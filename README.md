@@ -11,6 +11,9 @@ The app provides a drawing canvas where the user can use the mouse to quick sket
 
 Then, the user can launch the webcam through the app by clicking the 'Drawing cam button'. This will trigger some haar cascade classifiers that will recognice the features from the video and substitute them with the drawn features.
 
+<p align="center">
+<img src='./INPUT/App_flow.png' alt="Draw me!" width="400" height="200"></p>
+
 Additionally, the user can see the features recognized by the haar cascades classifiers by clicking the 'Features cam' buttom. By ticking the 'Transparent features' box, the white background of the drawing will be removed in the video.
 
 **Quick start guide:**
@@ -31,3 +34,5 @@ Additionally, the user can see the features recognized by the haar cascades clas
 <p align='center'>
 <a href="https://www.youtube.com/watch?v=VjCKxSiYEgo" target="_blank"><img src='./INPUT/Video_snapshot.png' width="600" height="400" title="Draw me! VIDEO DEMO" alt="Draw me!"></a></p>
 
+<p align="center">
+<img src='./INPUT/Eye_logo.png' alt="Draw me!" width="150" height="100"></p>
