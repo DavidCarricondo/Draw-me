@@ -1,17 +1,6 @@
 # **Draw-me!**
-  <head>
-    <style>
-      .img-container {
-        text-align: center;
-        display: block;
-      }
-    </style>
-  </head>
-  <body>
-    <span class="img-container"> <!-- Inline parent element -->
-      <img src='./INPUT/Eye_logo.png' alt="Draw me!" width="150" height="100">
-    </span>
-  </body>
+<p align="center">
+<img src='./INPUT/Eye_logo.png' alt="Draw me!" width="150" height="100"></p>
 
 
 Draw me! is several things at the same time. It is a quick drawing classifier. It is a face features recognition and tracking engine. It is a features swapping application.
@@ -23,19 +12,8 @@ The app provides a drawing canvas where the user can use the mouse to quick sket
 Then, the user can launch the webcam through the app (feature swapping button). This will trigger some haar cascade classifiers that will recognice the features from the video and substitute them with the drawn features.
 
 Quick start guide:
-  <head>
-    <style>
-      .img-container {
-        text-align: center;
-        display: block;
-      }
-    </style>
-  </head>
-  <body>
-    <span class="img-container"> <!-- Inline parent element -->
-      <img src='./INPUT/App_guide.jpg' alt="Draw me!" width="600" height="400">
-    </span>
-  </body>
+  <p align='center'>
+      <img src='./INPUT/App_guide.jpg' alt="Draw me!" width="600" height="400"> </p>
 
 ## Under the hood: main modules used
 +   Keras==2.3.1
@@ -49,4 +27,5 @@ Quick start guide:
 
 ### **Click the image for a demo video:**
 
-[![Draw me! Demo video]('./INPUT/Video_snapshot.png')](https://www.youtube.com/watch?v=VjCKxSiYEgo)
+<a href="https://www.youtube.com/watch?v=VjCKxSiYEgo" target="_blank"><img src='./INPUT/Video_snapshot.png' width="800" height="300" title="Draw me! VIDEO DEMO" alt="Draw me!"></a>
+
