@@ -1,5 +1,6 @@
 import cv2
 import os
+import numpy as np
 
 def errorHandler(fn):
     def wrapper(*args,**kwargs):
@@ -64,10 +65,13 @@ def obj_swapping(image, frame, x, y, h, w, transparency, top=False):
         #If the starting y coordinate is outside of the frame, dont draw it (specially for top drawings)
         if y_start > 0:
             if transparency==1:
+                #fill = np.all(thing != [255, 255, 255, 0], axis=-1)
+                #frame[fill] = [255, 0, 0, 1]
                 for i in range(y_start, y_end):
                     for e in range(x,x+w):
                         if thing[i-y, e-x, 3] != 0:
                             frame[i,e] = thing[i-y, e-x]
+                
             else:                    
                 frame[y_start:y_end, x:x+w] = thing
 

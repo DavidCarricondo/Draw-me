@@ -23,20 +23,14 @@ def save_predict(imag,e, model):
     text = obj.upper() + ' Accuracy:' + str(round(prediction* 100, 2) ) + '%'
     e.delete(0,END)
     e.insert(0, text)
-    name = e.get()
+    #name = e.get()
 
-    """
-    Trying transparency:
-    ig = cv2.imread('./OUTPUT/pred.jpg')
-    iga = cv2.cvtColor(ig, cv2.COLOR_BGR2BGRA)
-    white = np.all(ig == [255, 255, 255], axis=-1)
-    iga[white, -1] = 0
-    cv2.imwrite('./OUTPUT/test.jpg', iga)
-    """
-    transparent("./OUTPUT/pred.png", obj)
+    img = transparent("./OUTPUT/pred.png", obj)
     #filename = f"./OUTPUT/{obj}.jpg"
     #filename = "./OUTPUT/image.jpg"
     #imag.save(filename)
+    filename = f"./OUTPUT/{obj}.png"
+    img.save(filename) 
     mb.showinfo("Info", "You're image have been saved")
     
 
@@ -69,5 +63,5 @@ def transparent(path, obj):
         else:
             newdata.append(item)
     img.putdata(newdata)
-    filename = f"./OUTPUT/{obj}.png"
-    img.save(filename) 
+    return img
+    
