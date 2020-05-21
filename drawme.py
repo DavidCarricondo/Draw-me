@@ -10,7 +10,7 @@ def main():
 
     #Load model:
     #Maybe I have to move this to the main.py...
-    model = load_model('./src/models/model_sketch_extended_v4.h5') #_extended
+    model = load_model('./src/models/model_weighted.h5') #model_sketch_extended_v5
 
     root = Tk()
     root.geometry('700x520')

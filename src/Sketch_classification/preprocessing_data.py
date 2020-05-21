@@ -33,3 +33,33 @@ y = y = pf.create_y(sketch_data)
 
 #np.save('../../OUTPUT/X_trimm.npy', X)
 #np.save('../../OUTPUT/y_trimm.npy', y)
+
+"""
+Visualize layers:
+
+def convolution(im, kernel):
+  result = np.zeros(im.shape)
+  # Output array
+  for ii in range(im.shape[0] - 2):
+      for jj in range(im.shape[1] - 2):
+          result[ii, jj] = (im[ii:ii+2, jj:jj+2] *kernel).sum()
+  return result
+
+conv1 = model.layers[0]
+
+weights1 = conv1.get_weights()
+len(weights1)
+kernels1 = weights1[0]
+kernels1.shape
+
+kernel1_1 = kernels1[:, :, 0, 0]
+kernel1_1.shape 
+
+#plt.imshow(kernel1_1)
+
+ima = im[0,:,:,0]
+#plt.imshow(ima)
+
+filtered_image = convolution(ima, kernel1_1)
+#plt.imshow(filtered_image, cmap='gray')
+"""
