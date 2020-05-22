@@ -41,18 +41,32 @@ y_test = to_categorical(y_test, num_classes)
 ##Import the model from the model_builder:
 model = build_model(num_classes, input_shape)
 
+# checkpoint
+filepath="../models/weights-improvement-{epoch:02d}-{val_accuracy:.2f}.hdf5"
+checkpoint = ModelCheckpoint(filepath, monitor='val_accuracy', verbose=1, save_best_only=True, mode='max')
+callbacks_list = [checkpoint]
+
 ##MODELLING:
 batch_size = 128 
 epochs = 15 
+
+batch_size = 200 # Train in batches of 128 images
+epochs = 15 # Iterate over all data 4 times
 
 history = model.fit(X_train, y_train,
           batch_size=batch_size,
           epochs=epochs,
           verbose=1,
-          validation_data=(X_test, y_test))
+          validation_data=(X_test, y_test),
+          callbacks=callbacks_list)
 
-model.save("model_sketch_extended_v4.h5")
+#Saving full model
+model.save("../models/model_sketch_extended_v5.h5")
 print('model saved')
+
+#Loading checkpoint weights and saving the checkpoint model
+model.load_weights('../models/weights-improvement-05-0.97.hdf5')
+model.save('model_weighted.h5')
 
 """ With data augmentation:
 aug = ImageDataGenerator(rotation_range=20, zoom_range=0.15,
