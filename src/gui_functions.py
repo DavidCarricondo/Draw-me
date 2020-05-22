@@ -31,7 +31,7 @@ def save_predict(imag,e, model):
     #imag.save(filename)
     filename = f"./OUTPUT/{obj}.png"
     img.save(filename) 
-    mb.showinfo("Info", "You're image have been saved")
+    mb.showinfo("Info", "Your image have been saved")
     
 
 def paint(event, cv, draw):
@@ -48,7 +48,7 @@ def exit(root, reset = False):
         if os.path.exists(f"./OUTPUT/{e}.png"):
             os.remove(f"./OUTPUT/{e}.png")
     if reset == True:
-        mb.showinfo("Info", "You're images have been reseted")
+        mb.showinfo("Info", "Your images have been reseted")
     else:
         root.quit()
 
