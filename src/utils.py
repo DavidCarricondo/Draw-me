@@ -70,7 +70,7 @@ def obj_swapping(image, frame, x, y, h, w, transparency, top=False):
                 for i in range(y_start, y_end):
                     for e in range(x,x+w):
                         if thing[i-y, e-x, 3] != 0:
-                            frame[i,e] = thing[i-y, e-x]
+                            frame[i,e] = [255,255,255,1]
                 
             else:                    
                 frame[y_start:y_end, x:x+w] = thing
