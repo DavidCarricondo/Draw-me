@@ -66,8 +66,12 @@ def main():
     button6 = Button(root, text = 'Reset', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda:exit(root, reset=True))
     button6.grid(row=5, column=1)
 
-    check = Checkbutton(root, text='Transparent features', font='Helvetica 9 bold', bd=5, bg="#898989", variable=var)
-    check.place(x=525, y=300)
+    check = Checkbutton(root, text='Only trace', padx=5, pady=5, font='Helvetica 11 bold', bd=5, bg="#898989", variable=var)
+    check.place(x=540, y=280)
+
+    e = Entry(root, width=10, borderwidth=5)
+    e.insert(0, 'COLOR')
+    e.place(x=550, y=330)
 
     root.mainloop()
 
