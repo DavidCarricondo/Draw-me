@@ -69,9 +69,9 @@ def main():
     check = Checkbutton(root, text='Only trace', padx=5, pady=5, font='Helvetica 11 bold', bd=5, bg="#898989", variable=var)
     check.place(x=540, y=280)
 
-    e = Entry(root, width=10, borderwidth=5)
-    e.insert(0, 'COLOR')
-    e.place(x=550, y=330)
+    e2 = Entry(root, width=10, borderwidth=5)
+    e2.insert(0, 'COLOR')
+    e2.place(x=550, y=330)
 
     root.mainloop()
 
