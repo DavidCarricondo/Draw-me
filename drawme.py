@@ -47,7 +47,12 @@ def main():
     cv.grid(row=1, column=0, columnspan=3, rowspan=3)
     cv.bind("<B1-Motion>", lambda x: paint(event=x, cv=cv, draw=draw))
    
-    #Buttons    
+    #Buttons
+
+    e2 = Entry(root, width=10, borderwidth=5)
+    e2.insert(0, 'COLOR')
+    e2.place(x=550, y=330)
+
     button = Button(root, text = 'Ready!!', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda: save_predict(image1, e, model))
     button.grid(row=4, column=0)
 
@@ -60,7 +65,7 @@ def main():
     button4 = Button(root, text = 'Features cam', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda:cam(substitute=False))
     button4.place(x=525, y=100)
 
-    button5 = Button(root, text = 'Drawing cam', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda:cam(substitute=True, transparency=var.get()))
+    button5 = Button(root, text = 'Drawing cam', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda:cam(substitute=True, transparency=var.get(), color=color(e2)))
     button5.place(x=525, y=200)
 
     button6 = Button(root, text = 'Reset', font='Helvetica 12 bold', padx=25, pady=15, bd=5,bg="#898989", command=lambda:exit(root, reset=True))
@@ -68,10 +73,6 @@ def main():
 
     check = Checkbutton(root, text='Only trace', padx=5, pady=5, font='Helvetica 11 bold', bd=5, bg="#898989", variable=var)
     check.place(x=540, y=280)
-
-    e2 = Entry(root, width=10, borderwidth=5)
-    e2.insert(0, 'COLOR')
-    e2.place(x=550, y=330)
 
     root.mainloop()
 

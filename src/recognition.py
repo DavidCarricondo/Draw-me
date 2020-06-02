@@ -4,7 +4,7 @@ from src.utils import *
 
 ##NOTE FOR MY FUTURE ME: IN CV2 THE Y AXIS GOES INCREASINGLY FROM THE TOP --> DOWN.
 
-def cam(substitute = True, transparency = 0):
+def cam(substitute = True, transparency = 0, color = [255,255,255,1]):
     """
     Recognize and substitute a haar feature by a corresponding drawing
     and tracks and redraw the object with the cam movement
@@ -44,19 +44,19 @@ def cam(substitute = True, transparency = 0):
             
             ###Hats:
             if substitute==True:
-                obj_swapping(image = img_hat, frame=img, x=x, y=y, h=h, w=w, transparency=transparency, top=True)
+                obj_swapping(image = img_hat, frame=img, x=x, y=y, h=h, w=w, transparency=transparency, color=color, top=True)
             else:
                 cv2.rectangle(img, (x,y), (x+w, y+h), (255, 0, 0), 2)
             #Within eyes rectangle:
             for (ex, ey, ew, eh) in eyes:
                 if substitute==True:
-                    obj_swapping(image = img_eye, frame=roi_color, x=ex, y=ey, h=eh, w=ew, transparency=transparency)
+                    obj_swapping(image = img_eye, frame=roi_color, x=ex, y=ey, h=eh, w=ew, transparency=transparency, color=color)
                 else:
                     cv2.rectangle(roi_color, (ex, ey), (ex+ew, ey+eh), (0, 255, 0), 2)
             #Within nose rectangle:   
             for (sx, sy, sw, sh) in nose:
                 if substitute == True:
-                    obj_swapping(image = img_nose, frame=roi_color, x=sx, y=sy, h=sh, w=sw, transparency=transparency)
+                    obj_swapping(image = img_nose, frame=roi_color, x=sx, y=sy, h=sh, w=sw, transparency=transparency, color=color)
                 else:
                     cv2.rectangle(roi_color, (sx, sy), (sx+sw, sy+sh), (0, 0, 255), 2)
             #Within mouth rectangle:   

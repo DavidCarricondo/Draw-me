@@ -64,4 +64,16 @@ def transparent(path, obj):
             newdata.append(item)
     img.putdata(newdata)
     return img
+
+def color(e):
+    """
+    Return the color of the trace
+    """
+    color = e.get().lower()
+    colors = {'color':[255, 255, 255, 1], 'white':[255,255,255,1], 'black':[0, 0, 0, 1], 'blue':[255, 0, 0, 1], 'red':[0, 0, 255, 1], 'green':[0, 255, 0, 0]}
+    if color in colors: 
+        return colors[color]
+    else:
+        mb.showinfo("Info", "Do not recognize that color, use white, black, blue, red, green. Returning default (white)") 
+        return colors['color'] 
     

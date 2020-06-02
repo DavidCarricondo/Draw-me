@@ -2,6 +2,7 @@ import cv2
 import os
 import numpy as np
 
+
 def errorHandler(fn):
     def wrapper(*args,**kwargs):
         try:
@@ -21,12 +22,6 @@ def open_img (name, test=True):
     img = cv2.imread(path, -1)
     return cv2.cvtColor(img, cv2.COLOR_BGR2BGRA)
 
-def color(color):
-    """
-    Return the color of the trace
-    """
-    colors = {'white':[255, 255, 255, 1], 'black':[0, 0, 0, 1], 'blue':[255, 0, 0, 1], 'red':[0, 0, 255, 1], 'green':[0, 255, 0, 0]}
-    return colors[color]
 
 def image_resize(image, width = None, height = None, inter = cv2.INTER_CUBIC):
     """ 
@@ -53,7 +48,7 @@ def image_resize(image, width = None, height = None, inter = cv2.INTER_CUBIC):
     resized = cv2.resize(image, dim, interpolation = inter)
     return resized
 
-def obj_swapping(image, frame, x, y, h, w, transparency, top=False, color = [255,255,255,1]):
+def obj_swapping(image, frame, x, y, h, w, transparency, color=[255,255,255,1], top=False):
     """
     Substitute a haar feature by a corresponding drawing
     """
