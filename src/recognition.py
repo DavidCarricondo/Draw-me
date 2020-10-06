@@ -4,7 +4,10 @@ from src.utils import *
 
 ##NOTE FOR MY FUTURE ME: IN CV2 THE Y AXIS GOES INCREASINGLY FROM THE TOP --> DOWN.
 
-def cam(substitute = True, transparency = 0, color = [255,255,255,1]):
+def trackbars(x):
+    pass
+
+def cam(substitute = True, transparency = 0):
     """
     Recognize and substitute a haar feature by a corresponding drawing
     and tracks and redraw the object with the cam movement
@@ -14,8 +17,10 @@ def cam(substitute = True, transparency = 0, color = [255,255,255,1]):
     nose_cascade = cv2.CascadeClassifier('./src/models/haarcascade_mcs_nose.xml')
     mouth_cascade = cv2.CascadeClassifier('./src/models/haarcascade_mcs_mouth.xml')
 
+    cv2.namedWindow('img')
     cap = cv2.VideoCapture(0)
 
+    
     #Pictures to add to the video
     img_eye = open_img('eyes', test=False)
     img_nose = open_img('nose', test=False)
@@ -28,6 +33,17 @@ def cam(substitute = True, transparency = 0, color = [255,255,255,1]):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2BGRA)
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         faces = face_cascade.detectMultiScale(gray, scaleFactor = 1.3, minNeighbors = 5)
+
+        #TRack bars:
+        cv2.createTrackbar('Blue', 'img', 255, 255, trackbars)
+        cv2.createTrackbar('Green', 'img', 255, 255, trackbars)
+        cv2.createTrackbar('Red', 'img', 255, 255, trackbars)
+
+        b = cv2.getTrackbarPos('Blue', 'img')
+        r = cv2.getTrackbarPos('Green', 'img')
+        g = cv2.getTrackbarPos('Red', 'img')
+
+        color = [b, r, g, 1]
 
         img_h, img_w, img_c = img.shape
 
@@ -62,7 +78,7 @@ def cam(substitute = True, transparency = 0, color = [255,255,255,1]):
             #Within mouth rectangle:   
             for (mx, my, mw, mh) in mouth:
                 if substitute == True:
-                    obj_swapping(image = img_mouth, frame=roi_color, x=mx, y=my, h=mh, w=mw, transparency=transparency)
+                    obj_swapping(image = img_mouth, frame=roi_color, x=mx, y=my, h=mh, w=mw, transparency=transparency, color=color)
                 else:
                     cv2.rectangle(roi_color, (mx, my), (mx+mw, my+mh), (255, 0, 255), 2)
 

@@ -48,7 +48,7 @@ def image_resize(image, width = None, height = None, inter = cv2.INTER_CUBIC):
     resized = cv2.resize(image, dim, interpolation = inter)
     return resized
 
-def obj_swapping(image, frame, x, y, h, w, transparency, color=[255,255,255,1], top=False):
+def obj_swapping(image, frame, x, y, h, w, transparency, color, top=False):
     """
     Substitute a haar feature by a corresponding drawing
     """
