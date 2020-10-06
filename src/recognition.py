@@ -17,9 +17,11 @@ def cam(substitute = True, transparency = 0):
     nose_cascade = cv2.CascadeClassifier('./src/models/haarcascade_mcs_nose.xml')
     mouth_cascade = cv2.CascadeClassifier('./src/models/haarcascade_mcs_mouth.xml')
 
+    #Capture video:
     cv2.namedWindow('img')
     cap = cv2.VideoCapture(0)
-
+    cap.set(3, 1280) #3 is the shorthand for CAP_PROP_FRAME_WIDTH
+    cap.set(4, 720) #4 is the shorthand for CAP_PROP_FRAME_HEIGHT
     
     #Pictures to add to the video
     img_eye = open_img('eyes', test=False)
