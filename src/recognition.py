@@ -5,6 +5,9 @@ from src.utils import *
 ##NOTE FOR MY FUTURE ME: IN CV2 THE Y AXIS GOES INCREASINGLY FROM THE TOP --> DOWN.
 
 def trackbars(x):
+    '''
+    Useless callback to pass to the trackbars
+    '''
     pass
 
 def cam(substitute = True, transparency = 0):

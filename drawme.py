@@ -6,12 +6,12 @@ from src.recognition import *
 from tkinter import messagebox as mb
 from keras.models import load_model
 
+
 def main():
 
     #Load model:
-    #Maybe I have to move this to the main.py...
-    model = load_model('./src/models/model_weighted.h5') #model_sketch_extended_v5
-
+    model = load_model('./src/models/model_sketch_revisit.h5') 
+    
     root = Tk()
     root.geometry('700x520')
     root.title('Draw on me!!')

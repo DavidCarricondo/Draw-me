@@ -20,7 +20,7 @@ def predict_class(model, path):
 
     #format prediction
     #classes = ['eyes', 'mouth', 'nose']
-    classes = ['eyeglasses', 'eyes', 'hat', 'mouth', 'nose']
+    classes = ['eyes', 'hat', 'mouth', 'nose']
     ind = np.where(pred[0]==max(pred[0]))[0][0]
 
     return classes[ind], max(pred[0])
