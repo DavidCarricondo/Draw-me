@@ -59,8 +59,8 @@ def cam(substitute = True, transparency = 0):
             roi_gray = gray[y:y+h, x:x+w]
             roi_color = img[y:y+h, x:x+w]
             eyes = eye_cascade.detectMultiScale(roi_gray, scaleFactor = 1.03, minNeighbors = 7)
-            nose = nose_cascade.detectMultiScale(roi_gray, scaleFactor = 1.5, minNeighbors = 7)
-            mouth = mouth_cascade.detectMultiScale(roi_gray, scaleFactor = 2, minNeighbors = 7)
+            nose = nose_cascade.detectMultiScale(roi_gray, scaleFactor = 3, minNeighbors = 7)
+            mouth = mouth_cascade.detectMultiScale(roi_gray, scaleFactor = 2, minNeighbors = 15)
 
             
             ###Hats:
