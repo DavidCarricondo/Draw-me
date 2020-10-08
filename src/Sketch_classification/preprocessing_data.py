@@ -6,7 +6,7 @@ import random
 mouth = np.load('./INPUT/mouth.npy')
 nose = np.load('./INPUT/nose.npy')
 eyes =  np.load('./INPUT/eye.npy')
-eyeglasses = np.load('./INPUT/eyeglasses.npy')
+#eyeglasses = np.load('./INPUT/eyeglasses.npy')
 hat = np.load('./INPUT/hat.npy')
 
 #TRimm the data to balance the samples. One at a time because of performance issues:
@@ -20,11 +20,11 @@ nose_clean = nose[rnd_nose]
 rnd_hat = random.sample(range(len(hat)), len(eyes))
 hat_clean = hat[rnd_hat]
 
-rnd_eyeglasses = random.sample(range(len(eyeglasses)), len(eyes))
-eyeglasses_clean = eyeglasses[rnd_eyeglasses]
+#rnd_eyeglasses = random.sample(range(len(eyeglasses)), len(eyes))
+#eyeglasses_clean = eyeglasses[rnd_eyeglasses]
 
 
-sketch_data = {'mouth' : mouth_clean,'nose': nose_clean, 'eyes' : eyes, 'eyeglasses': eyeglasses_clean, 'hat': hat_clean}
+sketch_data = {'mouth' : mouth_clean,'nose': nose_clean, 'eyes' : eyes,  'hat': hat_clean} #'eyeglasses': eyeglasses_clean,
 
 
 X = pf.create_x(sketch_data)

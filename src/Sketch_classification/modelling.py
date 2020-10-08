@@ -13,29 +13,35 @@ from keras.utils import to_categorical
 X = np.load('X_trim.npy')
 y = np.load('y_trim.npy')
 
-#Split data for train and test data:
+#Split data for train ,val, and test data:
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+X_val, X_test, y_val, y_test = train_test_split(X_test, y_test, test_size=0.5, random_state=1)
+
 
 # Number of classes to discriminate:
-num_classes = 5 
+num_classes = 4 
 # Input image dimensions:
 img_rows, img_cols = 28, 28 
 
 #Reshape the data for Tensorflow specifics:
 X_train = X_train.reshape(X_train.shape[0], img_rows, img_cols, 1)
+X_val = X_val.reshape(X_val.shape[0], img_rows, img_cols, 1)
 X_test = X_test.reshape(X_test.shape[0], img_rows, img_cols, 1)
 input_shape = (img_rows, img_cols, 1)
 
 #Rescale the pixel values so they go from 0 to 1:
 X_train = X_train.astype('float32') / 255
+X_val = X_val.astype('float32') / 255
 X_test = X_test.astype('float32') / 255
 
 print('X_train shape:', X_train.shape)
 print(X_train.shape[0], 'train samples')
+print(X_val.shape[0], 'val samples')
 print(X_test.shape[0], 'test samples')
 
 #Convert class vectors to binary class matrices:
 y_train = to_categorical(y_train, num_classes)
+y_val = to_categorical(y_train, num_classes)
 y_test = to_categorical(y_test, num_classes)
 
 ##Import the model from the model_builder:
@@ -47,21 +53,19 @@ checkpoint = ModelCheckpoint(filepath, monitor='val_accuracy', verbose=1, save_b
 callbacks_list = [checkpoint]
 
 ##MODELLING:
-batch_size = 128 
-epochs = 15 
 
-batch_size = 200 # Train in batches of 128 images
-epochs = 15 # Iterate over all data 4 times
+batch_size = 64 # Train in batches of 128 images
+epochs = 20 # Iterate over all data 4 times
 
 history = model.fit(X_train, y_train,
           batch_size=batch_size,
           epochs=epochs,
           verbose=1,
-          validation_data=(X_test, y_test),
+          validation_data=(X_val, y_val),
           callbacks=callbacks_list)
 
 #Saving full model
-model.save("../models/model_sketch_extended_v5.h5")
+model.save("../models/model_sketch_revisit.h5")
 print('model saved')
 
 #Loading checkpoint weights and saving the checkpoint model
